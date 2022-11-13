@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,5 +19,11 @@ public class SecurityController {
     @GetMapping
     public ResponseEntity<String> findAll(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(userDetails.getUsername());
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping(path = "/{id}")
+    public String findUserName(@AuthenticationPrincipal UserDetails userDetails) {
+        return userDetails.getUsername();
     }
 }

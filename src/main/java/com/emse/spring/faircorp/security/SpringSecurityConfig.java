@@ -39,6 +39,8 @@ public class SpringSecurityConfig {
                 .authorizeRequests(authorize -> authorize.anyRequest().authenticated()) // (1)
                 .formLogin(withDefaults()) // (2)
                 .httpBasic(withDefaults()) // (3)
+                .cors().disable()
+                .csrf().disable()
                 .build();
     }
 
@@ -50,8 +52,8 @@ public class SpringSecurityConfig {
                 .authorizeRequests(authorize -> authorize.anyRequest().hasRole(ROLE_ADMIN)) // (3)
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults())
-                /*.cors(cors -> cors.disable()*/
                 .cors().disable()
+                .csrf().disable()
                 .build();
     }
 
