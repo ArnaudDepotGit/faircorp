@@ -21,9 +21,4 @@ public class SecurityController {
         return ResponseEntity.ok(userDetails.getUsername());
     }
 
-    @Secured("ROLE_ADMIN")
-    @GetMapping(path = "/{id}")
-    public String findUserName(@AuthenticationPrincipal UserDetails userDetails) {
-        return userDetails.getUsername();
-    }
 }
